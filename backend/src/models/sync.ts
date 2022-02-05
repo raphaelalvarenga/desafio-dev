@@ -1,9 +1,10 @@
-// import associations from "./associations";
+import associations from "./associations";
 import Transacoes from "./transacoes.model";
+import TiposTransacoes from "./tipos-transacoes.model";
 
 export default async function sync() {
-    const force = false;
-    const alter = false;
+    const force = true;
+    const alter = true;
     const env = process.env.environment;
 
     console.log(`A M B I E N T E: ${env}`);
@@ -13,9 +14,10 @@ export default async function sync() {
     } else if (force && (env === "production" || env === "test")) {
         throw `Sync force not allowed in ${env}`;
     } else {
-        // associations();
+        associations();
 
         try {
+            await TiposTransacoes.sync({ force, alter });
             await Transacoes.sync({ force, alter });
         } catch (error) {
             console.log(`Falha ao sincronizar: ${error}`);
