@@ -1,0 +1,99 @@
+{
+    "success": true,
+    "message": "",
+    "params": {
+        "data": [
+            {
+                "nomeLoja": "LOJA DO Ó - MATRIZ",
+                "saldoConta": "1298,65",
+                "registros": [
+                    {
+                        "tipo": {
+                            "id": 5,
+                            "descricao": "Recebimento Empréstimo"
+                        },
+                        "data": "01/03/2019",
+                        "valor": "142,00",
+                        "cpf": "096.206.760-17",
+                        "cartao": "4753****3153",
+                        "hora": "15:34:53",
+                        "donoLoja": "MARIA JOSEFINA",
+                        "nomeLoja": "LOJA DO Ó - MATRIZ"
+                    },
+                    {
+                        "tipo": {
+                            "id": 6,
+                            "descricao": "Vendas"
+                        },
+                        "data": "13/08/2020",
+                        "valor": "650,48",
+                        "cpf": "486.548.821-98",
+                        "cartao": "4598****0159",
+                        "hora": "15:32:59",
+                        "donoLoja": "MARIA JOSEFINA",
+                        "nomeLoja": "LOJA DO Ó - MATRIZ"
+                    },
+                    {
+                        "tipo": {
+                            "id": 7,
+                            "descricao": "Recebimento TED"
+                        },
+                        "data": "01/06/2019",
+                        "valor": "506,17",
+                        "cpf": "232.702.980-56",
+                        "cartao": "8723****9987",
+                        "hora": "12:33:33",
+                        "donoLoja": "MARIA JOSEFINA",
+                        "nomeLoja": "LOJA DO Ó - MATRIZ"
+                    }
+                ]
+            },
+
+            {
+                "nomeLoja": "MERCADO DA AVENIDA",
+                "saldoConta": "6601,18",
+                "registros": [
+                    {
+                        "tipo": {
+                            "id": 1,
+                            "descricao": "Débito"
+                        },
+                        "data": "07/08/2020",
+                        "valor": "6102,00",
+                        "cpf": "845.152.540-73",
+                        "cartao": "6777****1313",
+                        "hora": "17:27:12",
+                        "donoLoja": "MARCOS PEREIRA",
+                        "nomeLoja": "MERCADO DA AVENIDA"
+                    },
+                    {
+                        "tipo": {
+                            "id": 3,
+                            "descricao": "Financiamento"
+                        },
+                        "data": "01/06/2019",
+                        "valor": "306,45",
+                        "cpf": "232.702.980-56",
+                        "cartao": "8723****9987",
+                        "hora": "12:33:33",
+                        "donoLoja": "MARCOS PEREIRA",
+                        "nomeLoja": "MERCADO DA AVENIDA"
+                    },
+                    {
+                        "tipo": {
+                            "id": 6,
+                            "descricao": "Vendas"
+                        },
+                        "data": "25/02/2021",
+                        "valor": "805,63",
+                        "cpf": "489.654.159-23",
+                        "cartao": "4878****4592",
+                        "hora": "09:28:45",
+                        "donoLoja": "MARCOS PEREIRA",
+                        "nomeLoja": "MERCADO DA AVENIDA"
+                    }
+                ]
+            }
+        ]
+    }
+}
