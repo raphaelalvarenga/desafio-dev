@@ -1,11 +1,11 @@
 export enum EnumTiposTransacao {
-    DEBITO = "Débito",
-    BOLETO = "Boleto",
-    FINANCIAMENTO = "Financiamento",
-    CREDITO = "Crédito",
-    RECEBIMENTOEMPRESTIMO = "Recebimento Empréstimo",
-    VENDAS = "Vendas",
-    RECEBIMENTOTED = "Recebimento TED",
-    RECIMENTODOC = "Recebimento DOC",
-    ALUGUEL = "Aluguel"
+    DEBITO = 1,
+    BOLETO,
+    FINANCIAMENTO,
+    CREDITO,
+    RECEBIMENTOEMPRESTIMO,
+    VENDAS,
+    RECEBIMENTOTED,
+    RECIMENTODOC,
+    ALUGUEL
 }
