@@ -1,0 +1,29 @@
+version: "3.7"
+services:
+    # app:
+    #  image: ${DOCKER_APP_IMAGE}
+    #  command: ${DOCKER_APP_COMMAND}
+    #  ports:
+    #    - ${DOCKER_APP_PORTS}
+    #  working_dir: ${DOCKER_APP_WORKING_DIR}
+    #  volumes:
+    #    - ${DOCKER_APP_VOLUMES}
+    #  networks:
+    #    - bycoders_net
+
+    db:
+        image: ${DOCKER_DB_IMAGE}
+        container_name: ${DOCKER_DB_CONTAINER_NAME}
+        ports:
+            - ${DOCKER_DB_PORTS}
+        volumes:
+            - ${DOCKER_DB_VOLUMES}
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DOCKER_DB_PASSWORD}
+            MYSQL_DATABASE: ${DOCKER_DB_DATABASE}
+        networks:
+            - bycoders_net
+volumes:
+    bycoders:
+networks:
+    bycoders_net:
