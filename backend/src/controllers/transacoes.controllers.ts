@@ -4,7 +4,7 @@ import { IResponse } from "../interfaces/response.interface";
 import { ITransacao } from "../interfaces/transacao.interface";
 import fs from "fs";
 import path from "path";
-import { formatGetTransacoes, getTimestamp } from "../helpers";
+import { formatCPF, formatGetTransacoes, getTimestamp } from "../helpers";
 import sequelize from "../connection";
 
 let response: IResponse = {
@@ -57,10 +57,12 @@ export const postTransacoes = (req: Request, res: Response) => {
 
             const valor = (parseInt(transacao.slice(9, 19)) / 100).toString();
 
+            const cpf = formatCPF(transacao.slice(19, 30));
+
             return {
                 data: timestamp,
                 valor,
-                cpf: transacao.slice(19, 30),
+                cpf,
                 cartao: transacao.slice(30, 42),
                 donoLoja: transacao.slice(48, 62).trim(),
                 nomeLoja: transacao.slice(62, 81).trim(),

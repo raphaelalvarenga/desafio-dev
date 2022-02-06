@@ -26,7 +26,7 @@ export const formatGetTransacoes = (transacoes: any[][]) => {
 
             result[result.length - 1] = {
                 ...result[result.length - 1],
-                saldoConta,
+                saldoConta: parseInt(saldoConta.toFixed(2)),
                 registros: [...result[result.length - 1].registros, transacao]
             };
         } else {
@@ -39,10 +39,28 @@ export const formatGetTransacoes = (transacoes: any[][]) => {
 
             result.push({
                 nomeLoja,
-                saldoConta,
+                saldoConta: parseInt(saldoConta.toFixed(2)),
                 registros: [transacao]
             });
         }
     });
     return result;
+};
+
+export const formatCPF = (cpf: string) => {
+    cpf = cpf.replace(/[^0-9]/g, "");
+
+    if (cpf.length > 3) {
+        cpf = [cpf.slice(0, 3), ".", cpf.slice(3)].join("");
+    }
+
+    if (cpf.length > 7) {
+        cpf = [cpf.slice(0, 7), ".", cpf.slice(7)].join("");
+    }
+
+    if (cpf.length > 11) {
+        cpf = [cpf.slice(0, 11), "-", cpf.slice(11)].join("");
+    }
+
+    return cpf;
 };
