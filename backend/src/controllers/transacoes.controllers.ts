@@ -4,7 +4,8 @@ import { IResponse } from "../interfaces/response.interface";
 import { ITransacao } from "../interfaces/transacao.interface";
 import fs from "fs";
 import path from "path";
-import { getTimestamp } from "../helpers";
+import { formatGetTransacoes, getTimestamp } from "../helpers";
+import sequelize from "../connection";
 
 let response: IResponse = {
     success: true,
@@ -15,8 +16,14 @@ let response: IResponse = {
 let status = 0;
 
 export const getTransacoes = (req: Request, res: Response) => {
-    Transacoes.findAll()
-        .then(data => {
+    // Transacoes.findAll()
+
+    sequelize
+        .query(
+            "select tr.id, tr.data, tr.valor, tr.cpf, tr.cartao, tr.donoLoja, tr.nomeLoja, ti.descricao, ti.natureza from transacoes as tr inner join tipos_transacao as ti on tr.tiposTransacaoId = ti.id order by tr.nomeLoja"
+        )
+        .then((data: any[]) => {
+            data = formatGetTransacoes(data);
             response = { ...response, params: { data } };
 
             status = 200;
@@ -55,8 +62,8 @@ export const postTransacoes = (req: Request, res: Response) => {
                 valor,
                 cpf: transacao.slice(19, 30),
                 cartao: transacao.slice(30, 42),
-                donoLoja: transacao.slice(48, 62),
-                nomeLoja: transacao.slice(62, 81),
+                donoLoja: transacao.slice(48, 62).trim(),
+                nomeLoja: transacao.slice(62, 81).trim(),
                 tiposTransacaoId: transacao.slice(0, 1)
             };
         });
