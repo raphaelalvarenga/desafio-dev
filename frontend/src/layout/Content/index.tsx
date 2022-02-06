@@ -17,6 +17,8 @@ import { FiSend } from "react-icons/fi";
 import NoDataImg from "../../shared/images/no_data_found.png";
 import { ITransacao } from "../../shared/interfaces/transacao.interface";
 import Table from "../../shared/components/Table";
+import Title from "../../shared/components/Title";
+import Balance from "../../shared/components/Balance";
 
 interface IContent {}
 
@@ -74,7 +76,7 @@ const Content: FC<IContent> = () => {
                     <Button
                         disabled
                         variant="primary"
-                        style={{ width: "200px" }}
+                        style={{ width: "200px", marginBottom: "50px" }}
                     >
                         <ButtonContent>
                             <ButtonContentLabel style={{ marginRight: "10px" }}>
@@ -103,7 +105,34 @@ const Content: FC<IContent> = () => {
                 </NoDataFoundContainer>
             )}
 
-            {transacoes.length > 1 && <Table transacoes={transacoes} />}
+            {transacoes.length > 1 && (
+                <>
+                    <Title title="LOJA DO Ó - MATRIZ" />
+                    <Table transacoes={transacoes} />
+                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
+                    <Title title="LOJA DO Ó - MATRIZ" />
+                    <Table transacoes={transacoes} />
+                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
+                    <Title title="LOJA DO Ó - MATRIZ" />
+                    <Table transacoes={transacoes} />
+                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
+                    <Title title="LOJA DO Ó - MATRIZ" />
+                    <Table transacoes={transacoes} />
+                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
+                    <Title title="LOJA DO Ó - MATRIZ" />
+                    <Table transacoes={transacoes} />
+                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
+                    <Title title="LOJA DO Ó - MATRIZ" />
+                    <Table transacoes={transacoes} />
+                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
+                    <Title title="LOJA DO Ó - MATRIZ" />
+                    <Table transacoes={transacoes} />
+                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
+                    <Title title="LOJA DO Ó - MATRIZ" />
+                    <Table transacoes={transacoes} />
+                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
+                </>
+            )}
         </Container>
     );
 };
