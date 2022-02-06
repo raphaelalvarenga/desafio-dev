@@ -7,7 +7,9 @@ import {
     ButtonContainer,
     ButtonContent,
     ButtonContentLabel,
-    ButtonContentIcon
+    ButtonContentIcon,
+    NoDataFoundContainerImagem,
+    NoDataFoundContainerLabel
 } from "./styles";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { FiSend } from "react-icons/fi";
@@ -42,6 +44,13 @@ const Content: FC<IContent> = () => (
                 </Button>
             </ButtonContainer>
         </UploadFileContainer>
+
+        <NoDataFoundContainer>
+            <NoDataFoundContainerImagem>Imagem</NoDataFoundContainerImagem>
+            <NoDataFoundContainerLabel>
+                Nenhum registro encontrado...
+            </NoDataFoundContainerLabel>
+        </NoDataFoundContainer>
     </Container>
 );
 
