@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import Transacoes from "../models/transacoes.model";
-import { IRequest } from "../interfaces/request.interface";
 import { IResponse } from "../interfaces/response.interface";
 import { ITransacao } from "../interfaces/transacao.interface";
 import fs from "fs";
@@ -93,39 +92,6 @@ export const postTransacoes = (req: Request, res: Response) => {
         ).then(result => {
             fs.unlink(fileAddress, erro => {});
             getTransacoes(req, res);
-            // return Transacoes.findAll();
         });
-        // .then(data => {
-        //     response = { ...response, params: { data } };
-
-        //     status = 200;
-        // })
-        // .catch(data => {
-        //     response = { ...response, success: false, message: data };
-
-        //     status = 500;
-        // })
-        // .finally(() => {
-        //     res.status(status).json(response);
-        // });
-        // .catch(error => console.log(error));
-
-        // res.json({ texto: data.toString().split("\n") });
     });
-
-    // let { file } = params;
-
-    // Transacoes.bulkCreate([
-    //     {
-    //         data: data.,
-    //         valor: 500.0,
-    //         cpf: "12345678910",
-    //         cartao: "1234***5678",
-    //         donoLoja: "José da Silva",
-    //         nomeLoja: "Supermercado do José",
-    //         tiposTransacaoId: EnumTiposTransacao.DEBITO
-    //     }
-    // ])
-    //     .then(result => console.log("CRIOU"))
-    //     .catch(error => console.log(error));
 };
