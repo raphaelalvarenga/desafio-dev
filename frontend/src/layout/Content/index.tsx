@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, Fragment, useEffect, useState } from "react";
 import Button from "../../shared/components/Button";
 import {
     Container,
@@ -19,43 +19,30 @@ import { ITransacao } from "../../shared/interfaces/transacao.interface";
 import Table from "../../shared/components/Table";
 import Title from "../../shared/components/Title";
 import Balance from "../../shared/components/Balance";
+import axios from "axios";
+import { ITransacaoView } from "../../shared/interfaces/transacao-view.interface";
 
 interface IContent {}
 
 const Content: FC<IContent> = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [transacoes, setTransacoes] = useState<ITransacao[]>([
-        {
-            id: 1,
-            tiposTransacaoId: "Recebimento Empréstimo",
-            data: "01/03/2019 15:34:53",
-            valor: "142,00",
-            cpf: "096.206.760-17",
-            cartao: "4753****3153",
-            donoLoja: "MARIA JOSEFINA",
-            nomeLoja: "LOJA DO Ó - MATRIZ"
-        },
-        {
-            id: 2,
-            tiposTransacaoId: "Vendas",
-            data: "113/08/2020 15:32:59",
-            valor: "650,48",
-            cpf: "486.548.821-98",
-            cartao: "4598****0159",
-            donoLoja: "MARIA JOSEFINA",
-            nomeLoja: "LOJA DO Ó - MATRIZ"
-        },
-        {
-            id: 3,
-            tiposTransacaoId: "Recebimento TED",
-            data: "01/06/2019 12:33:33",
-            valor: "506,17",
-            cpf: "232.702.980-56",
-            cartao: "8723****9987",
-            donoLoja: "MARIA JOSEFINA",
-            nomeLoja: "LOJA DO Ó - MATRIZ"
-        }
-    ]);
+    const [transacoesView, setTransacoesView] = useState<ITransacaoView[]>([]);
+
+    useEffect(() => {
+        getTransacoes();
+    }, []);
+
+    const getTransacoes = () => {
+        setIsLoading(true);
+        axios
+            .get("http://localhost:3001/")
+            .then(res => {
+                console.log(res.data.params.data);
+                setTransacoesView(res.data.params.data);
+            })
+            .catch(error => console.log(error))
+            .finally(() => setIsLoading(false));
+    };
 
     return (
         <Container>
@@ -90,7 +77,7 @@ const Content: FC<IContent> = () => {
                 </ButtonContainer>
             </UploadFileContainer>
 
-            {!isLoading && transacoes.length === 0 && (
+            {!isLoading && transacoesView.length === 0 && (
                 <NoDataFoundContainer>
                     <NoDataFoundContainerImagem>
                         <NoDataImagem
@@ -105,34 +92,13 @@ const Content: FC<IContent> = () => {
                 </NoDataFoundContainer>
             )}
 
-            {transacoes.length > 1 && (
-                <>
-                    <Title title="LOJA DO Ó - MATRIZ" />
-                    <Table transacoes={transacoes} />
-                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
-                    <Title title="LOJA DO Ó - MATRIZ" />
-                    <Table transacoes={transacoes} />
-                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
-                    <Title title="LOJA DO Ó - MATRIZ" />
-                    <Table transacoes={transacoes} />
-                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
-                    <Title title="LOJA DO Ó - MATRIZ" />
-                    <Table transacoes={transacoes} />
-                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
-                    <Title title="LOJA DO Ó - MATRIZ" />
-                    <Table transacoes={transacoes} />
-                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
-                    <Title title="LOJA DO Ó - MATRIZ" />
-                    <Table transacoes={transacoes} />
-                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
-                    <Title title="LOJA DO Ó - MATRIZ" />
-                    <Table transacoes={transacoes} />
-                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
-                    <Title title="LOJA DO Ó - MATRIZ" />
-                    <Table transacoes={transacoes} />
-                    <Balance>Saldo em Conta (R$): 1298,65</Balance>
-                </>
-            )}
+            {transacoesView.map(({ nomeLoja, saldoConta, registros }) => (
+                <Fragment key={nomeLoja}>
+                    <Title title={nomeLoja} />
+                    <Table transacoes={registros} />
+                    <Balance>Saldo em Conta (R$): {saldoConta}</Balance>
+                </Fragment>
+            ))}
         </Container>
     );
 };
