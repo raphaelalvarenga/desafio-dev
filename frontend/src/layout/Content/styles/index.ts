@@ -2,8 +2,24 @@ import styled from "styled-components";
 
 export const Container = styled.main``;
 
-export const UploadFileContainer = styled.div``;
+export const UploadFileContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
 
-export const ButtonContainer = styled.div``;
+export const ButtonContainer = styled.div`
+    margin-bottom: 24px;
+`;
+
+export const ButtonContent = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const ButtonContentLabel = styled.div``;
+
+export const ButtonContentIcon = styled.div``;
 
 export const NoDataFoundContainer = styled.div``;

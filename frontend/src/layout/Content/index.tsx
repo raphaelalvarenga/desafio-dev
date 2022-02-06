@@ -4,8 +4,13 @@ import {
     Container,
     UploadFileContainer,
     NoDataFoundContainer,
-    ButtonContainer
+    ButtonContainer,
+    ButtonContent,
+    ButtonContentLabel,
+    ButtonContentIcon
 } from "./styles";
+import { AiOutlineCloudUpload } from "react-icons/ai";
+import { FiSend } from "react-icons/fi";
 
 interface IContent {}
 
@@ -14,12 +19,26 @@ const Content: FC<IContent> = () => (
         <UploadFileContainer>
             <ButtonContainer>
                 <Button variant="secondary" style={{ width: "200px" }}>
-                    Upload Arquivo
+                    <ButtonContent>
+                        <ButtonContentLabel style={{ marginRight: "10px" }}>
+                            Upload Arquivo
+                        </ButtonContentLabel>
+                        <ButtonContentIcon>
+                            <AiOutlineCloudUpload size={23} />
+                        </ButtonContentIcon>
+                    </ButtonContent>
                 </Button>
             </ButtonContainer>
             <ButtonContainer>
                 <Button disabled variant="primary" style={{ width: "200px" }}>
-                    Enviar Arquivo
+                    <ButtonContent>
+                        <ButtonContentLabel style={{ marginRight: "10px" }}>
+                            Enviar Arquivo
+                        </ButtonContentLabel>
+                        <ButtonContentIcon>
+                            <FiSend size={20} />
+                        </ButtonContentIcon>
+                    </ButtonContent>
                 </Button>
             </ButtonContainer>
         </UploadFileContainer>
