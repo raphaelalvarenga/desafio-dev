@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { Container, Logo, LogoContainer, LogoutContainer } from "./styles";
-import LogoBycoders from "../../shared/images/bycoders_.jpg";
 import Button from "../../shared/components/Button";
 
 interface ITopbar {}
