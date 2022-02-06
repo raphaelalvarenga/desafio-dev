@@ -49,7 +49,9 @@ const Table: FC<ITable> = ({ transacoes }) => (
                             {descricao}
                         </TableColumn>
                         <TableColumn>{data}</TableColumn>
-                        <TableColumn>{valor}</TableColumn>
+                        <TableColumn>
+                            {(valor as number).toFixed(2).replace(".", ",")}
+                        </TableColumn>
                         <TableColumn>{cpf}</TableColumn>
                         <TableColumn>{cartao}</TableColumn>
                         <TableColumn>{data}</TableColumn>

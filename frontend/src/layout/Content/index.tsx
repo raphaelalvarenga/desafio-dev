@@ -96,7 +96,18 @@ const Content: FC<IContent> = () => {
                 <Fragment key={nomeLoja}>
                     <Title title={nomeLoja} />
                     <Table transacoes={registros} />
-                    <Balance>Saldo em Conta (R$): {saldoConta}</Balance>
+                    <Balance>
+                        Saldo em Conta:{" "}
+                        <span
+                            style={{
+                                color:
+                                    parseInt(saldoConta) < 0 ? "red" : "black"
+                            }}
+                        >
+                            R${" "}
+                            {parseInt(saldoConta).toFixed(2).replace(".", ",")}
+                        </span>
+                    </Balance>
                 </Fragment>
             ))}
         </Container>
