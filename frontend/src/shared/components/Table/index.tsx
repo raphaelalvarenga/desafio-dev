@@ -34,7 +34,7 @@ const Table: FC<ITable> = ({ transacoes }) => (
                 (
                     {
                         id,
-                        tiposTransacaoId,
+                        descricao,
                         data,
                         valor,
                         cpf,
@@ -46,7 +46,7 @@ const Table: FC<ITable> = ({ transacoes }) => (
                 ) => (
                     <TableRow index={index} key={id}>
                         <TableColumn style={{ textAlign: "left" }}>
-                            {tiposTransacaoId}
+                            {descricao}
                         </TableColumn>
                         <TableColumn>{data}</TableColumn>
                         <TableColumn>{valor}</TableColumn>

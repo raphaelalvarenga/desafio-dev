@@ -50,38 +50,32 @@ export const postTransacoes = (req: Request, res: Response) => {
             transacoesString.pop();
         }
         const transacoes: ITransacao[] = transacoesString.map(transacao => {
-            const timestamp = getTimestamp(
-                transacao.slice(1, 9),
-                transacao.slice(42, 48)
-            );
-
             const valor = (parseInt(transacao.slice(9, 19)) / 100).toString();
 
             const cpf = formatCPF(transacao.slice(19, 30));
 
             return {
-                data: timestamp,
+                data: transacao.slice(1, 9),
+                hora: transacao.slice(42, 48),
                 valor,
                 cpf,
                 cartao: transacao.slice(30, 42),
                 donoLoja: transacao.slice(48, 62).trim(),
                 nomeLoja: transacao.slice(62, 81).trim(),
-                tiposTransacaoId: transacao.slice(0, 1)
+                descricao: transacao.slice(0, 1)
             };
         });
 
         Transacoes.bulkCreate(
             transacoes.map(transacao => {
                 return {
-                    data: transacao.data,
+                    data: getTimestamp(transacao.data, transacao.hora),
                     valor: transacao.valor,
                     cpf: transacao.cpf,
                     cartao: transacao.cartao,
                     donoLoja: transacao.donoLoja,
                     nomeLoja: transacao.nomeLoja,
-                    tiposTransacaoId: parseInt(
-                        transacao.tiposTransacaoId.toString()
-                    )
+                    descricao: parseInt(transacao.descricao.toString())
                 };
             })
         ).then(result => {
