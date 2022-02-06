@@ -1,4 +1,4 @@
-import { FC, Fragment, useEffect, useState } from "react";
+import { ChangeEvent, FC, Fragment, useEffect, useState } from "react";
 import Button from "../../shared/components/Button";
 import {
     Container,
@@ -27,6 +27,7 @@ interface IContent {}
 const Content: FC<IContent> = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [transacoesView, setTransacoesView] = useState<ITransacaoView[]>([]);
+    const [selectedFile, setSelectedFile] = useState<string | Blob>("");
 
     useEffect(() => {
         getTransacoes();
@@ -44,11 +45,37 @@ const Content: FC<IContent> = () => {
             .finally(() => setIsLoading(false));
     };
 
+    const postTransacoes = (event: any) => {
+        event.preventDefault();
+        const formData = new FormData();
+
+        formData.append("file", selectedFile);
+
+        const config = {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        };
+
+        axios
+            .post("http://localhost:3001/", formData, config)
+            .then(res => setTransacoesView(res.data.params.data))
+            .catch(error => console.log(error));
+    };
+
     return (
         <Container>
-            <UploadFileContainer>
-                <ButtonContainer>
-                    <Button variant="secondary" style={{ width: "200px" }}>
+            <form onSubmit={postTransacoes} encType="multipart/form-data">
+                <UploadFileContainer>
+                    <ButtonContainer>
+                        <input
+                            type="file"
+                            name="file"
+                            onChange={(e: any) =>
+                                setSelectedFile(e.target.files[0])
+                            }
+                        />
+                        {/* <Button variant="secondary" style={{ width: "200px" }}>
                         <ButtonContent>
                             <ButtonContentLabel style={{ marginRight: "10px" }}>
                                 Upload Arquivo
@@ -57,26 +84,28 @@ const Content: FC<IContent> = () => {
                                 <AiOutlineCloudUpload size={23} />
                             </ButtonContentIcon>
                         </ButtonContent>
-                    </Button>
-                </ButtonContainer>
-                <ButtonContainer>
-                    <Button
-                        disabled
-                        variant="primary"
-                        style={{ width: "200px", marginBottom: "50px" }}
-                    >
-                        <ButtonContent>
-                            <ButtonContentLabel style={{ marginRight: "10px" }}>
-                                Enviar Arquivo
-                            </ButtonContentLabel>
-                            <ButtonContentIcon>
-                                <FiSend size={20} />
-                            </ButtonContentIcon>
-                        </ButtonContent>
-                    </Button>
-                </ButtonContainer>
-            </UploadFileContainer>
-
+                    </Button> */}
+                    </ButtonContainer>
+                    <ButtonContainer>
+                        <Button
+                            disabled={selectedFile === ""}
+                            variant="primary"
+                            style={{ width: "200px", marginBottom: "50px" }}
+                        >
+                            <ButtonContent>
+                                <ButtonContentLabel
+                                    style={{ marginRight: "10px" }}
+                                >
+                                    Enviar Arquivo
+                                </ButtonContentLabel>
+                                <ButtonContentIcon>
+                                    <FiSend size={20} />
+                                </ButtonContentIcon>
+                            </ButtonContent>
+                        </Button>
+                    </ButtonContainer>
+                </UploadFileContainer>
+            </form>
             {!isLoading && transacoesView.length === 0 && (
                 <NoDataFoundContainer>
                     <NoDataFoundContainerImagem>
@@ -91,7 +120,6 @@ const Content: FC<IContent> = () => {
                     </NoDataFoundContainerLabel>
                 </NoDataFoundContainer>
             )}
-
             {transacoesView.map(({ nomeLoja, saldoConta, registros }) => (
                 <Fragment key={nomeLoja}>
                     <Title title={nomeLoja} />

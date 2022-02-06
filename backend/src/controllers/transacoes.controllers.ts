@@ -75,7 +75,7 @@ export const postTransacoes = (req: Request, res: Response) => {
                     cartao: transacao.cartao,
                     donoLoja: transacao.donoLoja,
                     nomeLoja: transacao.nomeLoja,
-                    descricao: parseInt(transacao.descricao.toString())
+                    tiposTransacaoId: parseInt(transacao.descricao.toString())
                 };
             })
         ).then(result => {

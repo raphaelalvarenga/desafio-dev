@@ -8,4 +8,5 @@ export interface ITransacao {
     donoLoja: string;
     nomeLoja: string;
     descricao: string;
+    tiposTransacaoId?: number;
 }
