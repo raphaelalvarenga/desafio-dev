@@ -1,5 +1,24 @@
 import { EnumNatureza } from "../enums/natureza-transacao.enum";
 
+export const getDateFromTimestamp = (date: Date) => {
+    const dia = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+    const mes =
+        date.getMonth() + 1 < 10
+            ? `0${date.getMonth() + 1}`
+            : date.getMonth() + 1;
+    const ano = date.getFullYear();
+
+    return `${dia}/${mes}/${ano}`;
+};
+
+export const getHourFromTimestamp = (date: Date) => {
+    const horas = date.getHours();
+    const minutos = date.getMinutes();
+    const segundos = date.getSeconds();
+
+    return `${horas}:${minutos}:${segundos}`;
+};
+
 export const getTimestamp = (data: string, hora: string) => {
     data = [data.slice(0, 4), "-", data.slice(4, 6), "-", data.slice(6)].join(
         ""
@@ -27,7 +46,14 @@ export const formatGetTransacoes = (transacoes: any[][]) => {
             result[result.length - 1] = {
                 ...result[result.length - 1],
                 saldoConta: parseInt(saldoConta.toFixed(2)),
-                registros: [...result[result.length - 1].registros, transacao]
+                registros: [
+                    ...result[result.length - 1].registros,
+                    {
+                        ...transacao,
+                        data: getDateFromTimestamp(transacao.data),
+                        hora: getHourFromTimestamp(transacao.data)
+                    }
+                ]
             };
         } else {
             nomeLoja = transacao.nomeLoja;
@@ -40,10 +66,17 @@ export const formatGetTransacoes = (transacoes: any[][]) => {
             result.push({
                 nomeLoja,
                 saldoConta: parseInt(saldoConta.toFixed(2)),
-                registros: [transacao]
+                registros: [
+                    {
+                        ...transacao,
+                        data: getDateFromTimestamp(transacao.data),
+                        hora: getHourFromTimestamp(transacao.data)
+                    }
+                ]
             });
         }
     });
+
     return result;
 };
 

@@ -36,6 +36,7 @@ const Table: FC<ITable> = ({ transacoes }) => (
                         id,
                         descricao,
                         data,
+                        hora,
                         valor,
                         cpf,
                         cartao,
@@ -54,7 +55,7 @@ const Table: FC<ITable> = ({ transacoes }) => (
                         </TableColumn>
                         <TableColumn>{cpf}</TableColumn>
                         <TableColumn>{cartao}</TableColumn>
-                        <TableColumn>{data}</TableColumn>
+                        <TableColumn>{hora}</TableColumn>
                         <TableColumn>{donoLoja}</TableColumn>
                         <TableColumn style={{ textAlign: "right" }}>
                             {nomeLoja}
