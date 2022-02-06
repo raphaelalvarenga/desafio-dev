@@ -1,10 +1,10 @@
 export interface ITransacao {
-    id: number;
-    tipo: number;
+    id?: number;
     data: string;
     valor: string;
     cpf: string;
     cartao: string;
     donoLoja: string;
-    nomeLoga: string;
+    nomeLoja: string;
+    tiposTransacaoId: string;
 }

@@ -1,7 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import multer from "multer";
 import sync from "../models/sync";
 import transacoesRoutes from "../routes/transacoes.routes";
 
