@@ -13,7 +13,7 @@ export const UploadFileContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-    margin-bottom: 24px;
+    margin-top: 24px;
 `;
 
 export const ButtonContent = styled.div`

@@ -5,8 +5,14 @@ interface ITableRow {
 }
 
 export const CustomTable = styled.table`
-    width: 100%;
+    display: none;
+
     border-collapse: collapse;
+
+    @media (min-width: 900px) {
+        width: 100%;
+        display: table;
+    }
 `;
 
 export const TableHead = styled.thead``;
