@@ -16,4 +16,5 @@ export const TableHeader = styled.th`
 
 export const TableColumn = styled.td`
     text-align: center;
+    height: 35px;
 `;
