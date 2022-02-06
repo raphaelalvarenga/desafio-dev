@@ -8,9 +8,9 @@ interface IButton {
 //     background: "transparent",
 //     width: "75px",
 //     height: "35px",
-//     border: "1px solid #03eb9e",
+//     border: "1px solid rgb(3, 235, 158)",
 //     borderRadius: "5px",
-//     color: "#03eb9e",
+//     color: "rgb(3, 235, 158)",
 //     fontWeight: "bold"
 // }}
 const Button: FC<IButton> = ({ children, variant }) => (
