@@ -1,8 +1,10 @@
 import { FC } from "react";
-import {} from "./styles";
+import { Container } from "./styles";
 
-interface ITitle {}
+interface IBalance {}
 
-const Title: FC<ITitle> = ({ children }) => <span>{children}</span>;
+const Balance: FC<IBalance> = ({ children }) => (
+    <Container>{children}</Container>
+);
 
-export default Title;
+export default Balance;
