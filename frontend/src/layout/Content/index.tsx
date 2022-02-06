@@ -9,10 +9,12 @@ import {
     ButtonContentLabel,
     ButtonContentIcon,
     NoDataFoundContainerImagem,
-    NoDataFoundContainerLabel
+    NoDataFoundContainerLabel,
+    NoDataImagem
 } from "./styles";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { FiSend } from "react-icons/fi";
+import NoDataImg from "../../shared/images/no_data_found.png";
 
 interface IContent {}
 
@@ -46,7 +48,9 @@ const Content: FC<IContent> = () => (
         </UploadFileContainer>
 
         <NoDataFoundContainer>
-            <NoDataFoundContainerImagem>Imagem</NoDataFoundContainerImagem>
+            <NoDataFoundContainerImagem>
+                <NoDataImagem src={NoDataImg} alt="no-data" width={160} />
+            </NoDataFoundContainerImagem>
             <NoDataFoundContainerLabel>
                 Nenhum registro encontrado...
             </NoDataFoundContainerLabel>

@@ -24,7 +24,17 @@ export const ButtonContentIcon = styled.div``;
 
 export const NoDataFoundContainer = styled.div``;
 
-export const NoDataFoundContainerImagem = styled.div``;
+export const NoDataFoundContainerImagem = styled.div`
+    text-align: center;
+`;
+
+export const NoDataImagem = styled.img`
+    width: 160px;
+
+    @media (min-width: 900px) {
+        width: 215px;
+    }
+`;
 
 export const NoDataFoundContainerLabel = styled.div`
     color: rgb(227, 238, 250);
