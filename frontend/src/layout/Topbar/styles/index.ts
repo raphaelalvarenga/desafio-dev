@@ -2,11 +2,17 @@ import styled from "styled-components";
 import Button from "../../../shared/components/Button";
 
 export const Container = styled.nav`
+    border-bottom: 2px solid rgb(3, 235, 158);
+`;
+
+export const ContainerArea = styled.div`
+    width: 100%;
+    margin: auto;
+    max-width: 1500px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 70px;
-    border-bottom: 2px solid rgb(3, 235, 158);
 `;
 
 export const LogoContainer = styled.div``;

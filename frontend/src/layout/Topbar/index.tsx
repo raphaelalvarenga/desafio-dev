@@ -1,17 +1,26 @@
 import { FC } from "react";
-import { Container, Logo, LogoContainer, LogoutContainer } from "./styles";
+import {
+    Container,
+    ContainerArea,
+    Logo,
+    LogoContainer,
+    LogoutContainer
+} from "./styles";
 import Button from "../../shared/components/Button";
+import BycodersLogo from "../../shared/images/bycordes_.jpg";
 
 interface ITopbar {}
 
 const Topbar: FC<ITopbar> = () => (
     <Container>
-        <LogoContainer>
-            <Logo src="https://i.imgur.com/CnbuexK.png" alt="Logo" />
-        </LogoContainer>
-        <LogoutContainer>
-            <Button variant="secondary">Logout</Button>
-        </LogoutContainer>
+        <ContainerArea>
+            <LogoContainer>
+                <Logo src={BycodersLogo} alt="Logo" />
+            </LogoContainer>
+            <LogoutContainer>
+                <Button variant="secondary">Logout</Button>
+            </LogoutContainer>
+        </ContainerArea>
     </Container>
 );
 
