@@ -1,20 +1,17 @@
 import { FC } from "react";
+import { CSSProperties } from "styled-components";
 import { Container } from "./styles";
 
 interface IButton {
     variant: string;
+    disabled?: boolean;
+    style?: CSSProperties;
 }
-// style={{
-//     background: "transparent",
-//     width: "75px",
-//     height: "35px",
-//     border: "1px solid rgb(3, 235, 158)",
-//     borderRadius: "5px",
-//     color: "rgb(3, 235, 158)",
-//     fontWeight: "bold"
-// }}
-const Button: FC<IButton> = ({ children, variant }) => (
-    <Container variant={variant}>{children}</Container>
+
+const Button: FC<IButton> = ({ children, variant, disabled, style }) => (
+    <Container disabled={disabled} variant={variant} style={style}>
+        {children}
+    </Container>
 );
 
 export default Button;

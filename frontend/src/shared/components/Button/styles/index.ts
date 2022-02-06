@@ -16,6 +16,16 @@ export const Container = styled.button<IContainer>`
     border-radius: 5px;
     cursor: pointer;
     transition: 0.2s;
+    :disabled {
+        background: rgb(227, 238, 250);
+        border-color: rgb(227, 238, 250);
+        color: white;
+        cursor: auto;
+        :hover {
+            background: rgb(227, 238, 250);
+            border-color: rgb(227, 238, 250);
+        }
+    }
     :hover {
         background: ${({ variant }) =>
             variant === "primary" ? "#00b67a" : "rgba(3, 235, 158, 0.2)"};

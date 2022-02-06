@@ -12,5 +12,6 @@ const Template: ComponentStory<typeof Button> = args => (
 
 export const ButtonStory = Template.bind({});
 ButtonStory.args = {
-    variant: "primary"
+    variant: "primary",
+    disabled: true
 };
