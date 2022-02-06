@@ -6,6 +6,10 @@ export const UploadFileContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (min-width: 900px) {
+        align-items: flex-start;
+    }
 `;
 
 export const ButtonContainer = styled.div`
