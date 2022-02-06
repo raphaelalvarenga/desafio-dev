@@ -4,6 +4,7 @@ import { IResponse } from "../interfaces/response.interface";
 import { ITransacao } from "../interfaces/transacao.interface";
 import fs from "fs";
 import path from "path";
+import { getTimestamp } from "../helpers";
 
 let response: IResponse = {
     success: true,
@@ -42,25 +43,10 @@ export const postTransacoes = (req: Request, res: Response) => {
             transacoesString.pop();
         }
         const transacoes: ITransacao[] = transacoesString.map(transacao => {
-            let data = transacao.slice(1, 9);
-            data = [
-                data.slice(0, 4),
-                "-",
-                data.slice(4, 6),
-                "-",
-                data.slice(6)
-            ].join("");
-
-            let hora = transacao.slice(42, 48);
-            hora = [
-                hora.slice(0, 2),
-                ":",
-                hora.slice(2, 4),
-                ":",
-                hora.slice(4)
-            ].join("");
-
-            const timestamp = `${data} ${hora}`;
+            const timestamp = getTimestamp(
+                transacao.slice(1, 9),
+                transacao.slice(42, 48)
+            );
 
             const valor = (parseInt(transacao.slice(9, 19)) / 100).toString();
 
