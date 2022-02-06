@@ -6,11 +6,10 @@ interface ITableRow {
 
 export const CustomTable = styled.table`
     display: none;
-
+    width: 100%;
     border-collapse: collapse;
 
     @media (min-width: 900px) {
-        width: 100%;
         display: table;
     }
 `;
@@ -26,7 +25,7 @@ export const TableRow = styled.tr<ITableRow>`
 
 export const TableHeader = styled.th`
     color: rgb(3, 235, 158);
-    padding: 10px 0;
+    padding: 0 0 10px 0;
 `;
 
 export const TableColumn = styled.td`
