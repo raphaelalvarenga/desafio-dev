@@ -1,7 +1,7 @@
 import dotEnv from "dotenv";
 dotEnv.config();
 
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import sync from "./models/sync";
