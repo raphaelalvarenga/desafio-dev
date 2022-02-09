@@ -33,7 +33,6 @@ export const getTimestamp = (data: string, hora: string) => {
 };
 
 export const formatGetTransacoes = (transacoes: ITransacao[]) => {
-    console.log(transacoes);
     let nomeLoja = "";
     let saldoConta = 0;
     const result: any[] = [];

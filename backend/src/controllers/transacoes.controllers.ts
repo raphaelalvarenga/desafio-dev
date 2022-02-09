@@ -16,8 +16,6 @@ let response: IResponse = {
 let status = 0;
 
 export const getTransacoes = (req: Request, res: Response) => {
-    // Transacoes.findAll()
-
     sequelize
         .query(
             "select tr.id, tr.data, tr.valor, tr.cpf, tr.cartao, tr.donoLoja, tr.nomeLoja, ti.descricao, ti.natureza from transacoes as tr inner join tipos_transacao as ti on tr.tiposTransacaoId = ti.id order by tr.nomeLoja"

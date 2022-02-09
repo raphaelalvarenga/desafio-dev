@@ -38,7 +38,6 @@ const Content: FC<IContent> = () => {
         axios
             .get("http://localhost:3001/")
             .then(res => {
-                console.log(res.data.params.data);
                 setTransacoesView(res.data.params.data);
             })
             .catch(error => console.log(error))
