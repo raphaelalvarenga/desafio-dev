@@ -23,7 +23,7 @@ export const getTransacoes = (req: Request, res: Response) => {
             "select tr.id, tr.data, tr.valor, tr.cpf, tr.cartao, tr.donoLoja, tr.nomeLoja, ti.descricao, ti.natureza from transacoes as tr inner join tipos_transacao as ti on tr.tiposTransacaoId = ti.id order by tr.nomeLoja"
         )
         .then((data: any[]) => {
-            data = formatGetTransacoes(data);
+            data = formatGetTransacoes(data[0]);
             response = { ...response, params: { data } };
 
             status = 200;
@@ -69,7 +69,7 @@ export const postTransacoes = (req: Request, res: Response) => {
         Transacoes.bulkCreate(
             transacoes.map(transacao => {
                 return {
-                    data: getTimestamp(transacao.data, transacao.hora),
+                    data: getTimestamp(transacao.data, transacao.hora!),
                     valor: transacao.valor,
                     cpf: transacao.cpf,
                     cartao: transacao.cartao,

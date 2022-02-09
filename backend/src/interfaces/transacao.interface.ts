@@ -1,7 +1,7 @@
 export interface ITransacao {
     id?: number;
     data: string;
-    hora: string;
+    hora?: string;
     valor: string | number;
     cpf: string;
     cartao: string;
@@ -9,4 +9,5 @@ export interface ITransacao {
     nomeLoja: string;
     descricao: string;
     tiposTransacaoId?: number;
+    natureza?: string;
 }

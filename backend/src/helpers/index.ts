@@ -1,4 +1,5 @@
 import { EnumNatureza } from "../enums/natureza-transacao.enum";
+import { ITransacao } from "../interfaces/transacao.interface";
 
 export const getDateFromTimestamp = (date: Date) => {
     const dia = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
@@ -31,17 +32,18 @@ export const getTimestamp = (data: string, hora: string) => {
     return `${data} ${hora}`;
 };
 
-export const formatGetTransacoes = (transacoes: any[][]) => {
+export const formatGetTransacoes = (transacoes: ITransacao[]) => {
+    console.log(transacoes);
     let nomeLoja = "";
     let saldoConta = 0;
     const result: any[] = [];
 
-    transacoes[0].forEach((transacao, index) => {
+    transacoes.forEach((transacao, index) => {
         if (nomeLoja === transacao.nomeLoja) {
             saldoConta =
                 transacao.natureza === EnumNatureza.ENTRADA
-                    ? saldoConta + transacao.valor
-                    : saldoConta - transacao.valor;
+                    ? saldoConta + (transacao.valor as number)
+                    : saldoConta - (transacao.valor as number);
 
             result[result.length - 1] = {
                 ...result[result.length - 1],
@@ -50,8 +52,8 @@ export const formatGetTransacoes = (transacoes: any[][]) => {
                     ...result[result.length - 1].registros,
                     {
                         ...transacao,
-                        data: getDateFromTimestamp(transacao.data),
-                        hora: getHourFromTimestamp(transacao.data)
+                        data: getDateFromTimestamp(new Date(transacao.data)),
+                        hora: getHourFromTimestamp(new Date(transacao.data))
                     }
                 ]
             };
@@ -60,8 +62,8 @@ export const formatGetTransacoes = (transacoes: any[][]) => {
             saldoConta = 0;
             saldoConta =
                 transacao.natureza === EnumNatureza.ENTRADA
-                    ? saldoConta + transacao.valor
-                    : saldoConta - transacao.valor;
+                    ? saldoConta + (transacao.valor as number)
+                    : saldoConta - (transacao.valor as number);
 
             result.push({
                 nomeLoja,
@@ -69,8 +71,8 @@ export const formatGetTransacoes = (transacoes: any[][]) => {
                 registros: [
                     {
                         ...transacao,
-                        data: getDateFromTimestamp(transacao.data),
-                        hora: getHourFromTimestamp(transacao.data)
+                        data: getDateFromTimestamp(new Date(transacao.data)),
+                        hora: getHourFromTimestamp(new Date(transacao.data))
                     }
                 ]
             });
