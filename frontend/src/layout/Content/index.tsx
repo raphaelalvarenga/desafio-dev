@@ -42,7 +42,7 @@ const Content: FC<IContent> = () => {
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [transacoesView, setTransacoesView] = useState<ITransacaoView[]>([]);
-    const [selectedFile, setSelectedFile] = useState<string | Blob>("");
+    const [selectedFile, setSelectedFile] = useState<string | File>("");
 
     useEffect(() => {
         getTransacoes();
@@ -113,39 +113,31 @@ const Content: FC<IContent> = () => {
                                 </ButtonContentIcon>
                             </ButtonContent>
                         </Button>
-
+                    </ButtonContainer>
+                    {selectedFile !== "" && (
                         <UploadedFileContainer>
                             <UploadedFileLabel>
-                                {selectedFile}
-                                Label qualquer
+                                {(selectedFile as File).name}
                             </UploadedFileLabel>
-
-                            <UploadedFileClose>
-                                <IoIosCloseCircle />
-                            </UploadedFileClose>
                         </UploadedFileContainer>
-                        {/* {selectedFile !== "" && (
-                        )} */}
-                    </ButtonContainer>
-                    <ButtonContainer>
-                        <Button
-                            disabled={selectedFile === ""}
-                            variant="primary"
-                            style={{ width: "200px", marginBottom: "50px" }}
-                        >
-                            <ButtonContent>
-                                <ButtonContentLabel
-                                    style={{ marginRight: "10px" }}
-                                >
-                                    Enviar Arquivo
-                                </ButtonContentLabel>
-                                <ButtonContentIcon>
-                                    <FiSend size={20} />
-                                </ButtonContentIcon>
-                            </ButtonContent>
-                        </Button>
-                    </ButtonContainer>
+                    )}
                 </UploadFileContainer>
+                <ButtonContainer>
+                    <Button
+                        disabled={selectedFile === ""}
+                        variant="primary"
+                        style={{ width: "200px", marginBottom: "50px" }}
+                    >
+                        <ButtonContent>
+                            <ButtonContentLabel style={{ marginRight: "10px" }}>
+                                Enviar Arquivo
+                            </ButtonContentLabel>
+                            <ButtonContentIcon>
+                                <FiSend size={20} />
+                            </ButtonContentIcon>
+                        </ButtonContent>
+                    </Button>
+                </ButtonContainer>
             </form>
             {!isLoading && transacoesView.length === 0 && (
                 <NoDataFoundContainer>

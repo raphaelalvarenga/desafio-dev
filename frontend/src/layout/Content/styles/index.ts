@@ -10,25 +10,31 @@ export const UploadFileContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 24px 0;
 
     @media (min-width: 900px) {
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
     }
 `;
 
 export const UploadedFileContainer = styled.div`
-    border: solid;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 25px;
+    border-radius: 20px;
+    color: rgb(3, 235, 158);
 `;
 
-export const UploadedFileLabel = styled.div``;
+export const UploadedFileLabel = styled.div`
+    margin-right: 10px;
+`;
 
 export const UploadedFileClose = styled.div``;
 
 export const ButtonContainer = styled.div`
-    margin-top: 24px;
+    margin-right: 24px;
 `;
 
 export const ButtonContent = styled.div`
