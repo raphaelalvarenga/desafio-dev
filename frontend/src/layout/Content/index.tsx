@@ -21,6 +21,7 @@ import Title from "../../shared/components/Title";
 import Balance from "../../shared/components/Balance";
 import axios from "axios";
 import { ITransacaoView } from "../../shared/interfaces/transacao-view.interface";
+import api from "../../shared/api";
 
 interface IContent {}
 
@@ -36,7 +37,7 @@ const Content: FC<IContent> = () => {
     const getTransacoes = () => {
         setIsLoading(true);
         axios
-            .get("http://localhost:3001/")
+            .get(api)
             .then(res => {
                 setTransacoesView(res.data.params.data);
             })
@@ -57,7 +58,7 @@ const Content: FC<IContent> = () => {
         };
 
         axios
-            .post("http://localhost:3001/", formData, config)
+            .post(api, formData, config)
             .then(res => setTransacoesView(res.data.params.data))
             .catch(error => console.log(error));
     };
