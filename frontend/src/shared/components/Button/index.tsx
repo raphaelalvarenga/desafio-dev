@@ -8,6 +8,7 @@ interface IButton {
     style?: CSSProperties;
     postTransacoes?: () => void;
     type?: "button" | "submit";
+    handleUploadFileButton?: () => void;
 }
 
 const Button: FC<IButton> = ({
@@ -17,6 +18,7 @@ const Button: FC<IButton> = ({
     style,
     postTransacoes,
     type,
+    handleUploadFileButton,
     ...props
 }) => (
     <Container
@@ -24,6 +26,7 @@ const Button: FC<IButton> = ({
         variant={variant}
         style={style}
         type={type}
+        onClick={handleUploadFileButton}
         {...props}
     >
         {children}
