@@ -16,6 +16,17 @@ export const UploadFileContainer = styled.div`
     }
 `;
 
+export const UploadedFileContainer = styled.div`
+    border: solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const UploadedFileLabel = styled.div``;
+
+export const UploadedFileClose = styled.div``;
+
 export const ButtonContainer = styled.div`
     margin-top: 24px;
 `;

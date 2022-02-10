@@ -1,4 +1,12 @@
-import { ChangeEvent, FC, Fragment, useEffect, useState } from "react";
+import {
+    ChangeEvent,
+    FC,
+    Fragment,
+    useEffect,
+    useState,
+    useRef,
+    MutableRefObject
+} from "react";
 import Button from "../../shared/components/Button";
 import {
     Container,
@@ -10,9 +18,13 @@ import {
     ButtonContentIcon,
     NoDataFoundContainerImagem,
     NoDataFoundContainerLabel,
-    NoDataImagem
+    NoDataImagem,
+    UploadedFileContainer,
+    UploadedFileLabel,
+    UploadedFileClose
 } from "./styles";
 import { AiOutlineCloudUpload } from "react-icons/ai";
+import { IoIosCloseCircle } from "react-icons/io";
 import { FiSend } from "react-icons/fi";
 import NoDataImg from "../../shared/images/no_data_found.png";
 import { ITransacao } from "../../shared/interfaces/transacao.interface";
@@ -26,6 +38,8 @@ import api from "../../shared/api";
 interface IContent {}
 
 const Content: FC<IContent> = () => {
+    const inputFile = useRef() as MutableRefObject<HTMLInputElement>;
+
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [transacoesView, setTransacoesView] = useState<ITransacaoView[]>([]);
     const [selectedFile, setSelectedFile] = useState<string | Blob>("");
@@ -63,6 +77,10 @@ const Content: FC<IContent> = () => {
             .catch(error => console.log(error));
     };
 
+    const handleUploadFileButton = () => {
+        inputFile.current.click();
+    };
+
     return (
         <Container>
             <form onSubmit={postTransacoes} encType="multipart/form-data">
@@ -71,20 +89,43 @@ const Content: FC<IContent> = () => {
                         <input
                             type="file"
                             name="file"
-                            onChange={(e: any) =>
-                                setSelectedFile(e.target.files[0])
-                            }
+                            ref={inputFile}
+                            onChange={(e: any) => {
+                                console.log(e.target.files[0]);
+                                setSelectedFile(e.target.files[0]);
+                            }}
+                            hidden
                         />
-                        {/* <Button variant="secondary" style={{ width: "200px" }}>
-                        <ButtonContent>
-                            <ButtonContentLabel style={{ marginRight: "10px" }}>
-                                Upload Arquivo
-                            </ButtonContentLabel>
-                            <ButtonContentIcon>
-                                <AiOutlineCloudUpload size={23} />
-                            </ButtonContentIcon>
-                        </ButtonContent>
-                    </Button> */}
+                        <Button
+                            variant="secondary"
+                            style={{ width: "200px" }}
+                            handleUploadFileButton={handleUploadFileButton}
+                            type="button"
+                        >
+                            <ButtonContent>
+                                <ButtonContentLabel
+                                    style={{ marginRight: "10px" }}
+                                >
+                                    Upload Arquivo
+                                </ButtonContentLabel>
+                                <ButtonContentIcon>
+                                    <AiOutlineCloudUpload size={23} />
+                                </ButtonContentIcon>
+                            </ButtonContent>
+                        </Button>
+
+                        <UploadedFileContainer>
+                            <UploadedFileLabel>
+                                {selectedFile}
+                                Label qualquer
+                            </UploadedFileLabel>
+
+                            <UploadedFileClose>
+                                <IoIosCloseCircle />
+                            </UploadedFileClose>
+                        </UploadedFileContainer>
+                        {/* {selectedFile !== "" && (
+                        )} */}
                     </ButtonContainer>
                     <ButtonContainer>
                         <Button
