@@ -1,4 +1,4 @@
-import {
+import React, {
     ChangeEvent,
     FC,
     Fragment,
@@ -59,7 +59,7 @@ const Content: FC<IContent> = () => {
             .finally(() => setIsLoading(false));
     };
 
-    const postTransacoes = (event: any) => {
+    const postTransacoes = (event: React.FormEvent) => {
         event.preventDefault();
         const formData = new FormData();
 
