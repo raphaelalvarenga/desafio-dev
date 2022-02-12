@@ -15,6 +15,10 @@ app.use(transacoesRoutes);
 
 sync()
     .then(() => {
-        app.listen(3001, () => console.log("Funcionando na porta 3001"));
+        if (require.main === module) {
+            app.listen(3001, () => console.log("Funcionando na porta 3001"));
+        }
     })
     .catch(error => console.log(error));
+
+export default app;
