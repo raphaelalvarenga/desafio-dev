@@ -24,7 +24,7 @@ export const UploadedFileContainer = styled.div`
     align-items: center;
     padding: 0 25px;
     border-radius: 20px;
-    color: rgb(3, 235, 158);
+    color: ${({ theme }) => theme.primary};
 `;
 
 export const UploadedFileLabel = styled.div`
@@ -62,7 +62,7 @@ export const NoDataImagem = styled.img`
 `;
 
 export const NoDataFoundContainerLabel = styled.div`
-    color: rgb(227, 238, 250);
+    color: ${({ theme }) => theme.secondary};
     font-size: 25px;
     text-align: center;
     font-weight: bold;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Button from "../../../shared/components/Button";
 
 export const Container = styled.nav`
-    border-bottom: 2px solid rgb(3, 235, 158);
+    border-bottom: ${({ theme }) => `2px solid ${theme.primary}`};
 `;
 
 export const ContainerArea = styled.div`

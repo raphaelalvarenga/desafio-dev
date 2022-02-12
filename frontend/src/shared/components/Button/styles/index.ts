@@ -5,11 +5,11 @@ interface IContainer {
 }
 
 export const Container = styled.button<IContainer>`
-    background: ${({ variant }) =>
-        variant === "primary" ? "rgb(3, 235, 158)" : "transparent"};
-    border: 2px solid rgb(3, 235, 158);
-    color: ${({ variant }) =>
-        variant === "primary" ? "white" : "rgb(3, 235, 158)"};
+    background: ${({ variant, theme }) =>
+        variant === "primary" ? theme.primary : "transparent"};
+    border: ${({ theme }) => `2px solid ${theme.primary}`};
+    color: ${({ variant, theme }) =>
+        variant === "primary" ? "white" : theme.primary};
     font-weight: bold;
     min-width: 75px;
     min-height: 35px;
@@ -17,19 +17,19 @@ export const Container = styled.button<IContainer>`
     cursor: pointer;
     transition: 0.2s;
     :disabled {
-        background: rgb(227, 238, 250);
-        border-color: rgb(227, 238, 250);
+        background: ${({ theme }) => theme.secondary};
+        border-color: ${({ theme }) => theme.secondary};
         color: white;
         cursor: auto;
         :hover {
-            background: rgb(227, 238, 250);
-            border-color: rgb(227, 238, 250);
+            background: ${({ theme }) => theme.secondary};
+            border-color: ${({ theme }) => theme.secondary};
         }
     }
     :hover {
-        background: ${({ variant }) =>
-            variant === "primary" ? "#00b67a" : "rgba(3, 235, 158, 0.2)"};
-        border-color: ${({ variant }) =>
-            variant === "primary" ? "#00b67a" : "rgb(3, 235, 158)"};
+        background: ${({ variant, theme }) =>
+            variant === "primary" ? theme.primaryDark : theme.primaryOpacity};
+        border-color: ${({ variant, theme }) =>
+            variant === "primary" ? theme.primaryDark : theme.primary};
     }
 `;

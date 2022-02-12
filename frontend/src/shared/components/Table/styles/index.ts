@@ -19,12 +19,12 @@ export const TableHead = styled.thead``;
 export const TableBody = styled.tbody``;
 
 export const TableRow = styled.tr<ITableRow>`
-    background: ${({ index }) =>
-        index % 2 === 0 ? "white" : "rgb(227, 238, 250)"};
+    background: ${({ index, theme }) =>
+        index % 2 === 0 ? "white" : theme.secondary};
 `;
 
 export const TableHeader = styled.th`
-    color: rgb(3, 235, 158);
+    color: ${({ theme }) => theme.primary};
     padding: 0 0 10px 0;
 `;
 
