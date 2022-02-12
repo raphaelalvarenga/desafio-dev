@@ -20,44 +20,49 @@ export default async function sync() {
 
         try {
             await TiposTransacoes.sync({ force, alter });
-            await TiposTransacoes.bulkCreate([
-                {
-                    descricao: EnumTiposTransacao.DEBITO,
-                    natureza: EnumNatureza.ENTRADA
-                },
-                {
-                    descricao: EnumTiposTransacao.BOLETO,
-                    natureza: EnumNatureza.SAIDA
-                },
-                {
-                    descricao: EnumTiposTransacao.FINANCIAMENTO,
-                    natureza: EnumNatureza.SAIDA
-                },
-                {
-                    descricao: EnumTiposTransacao.CREDITO,
-                    natureza: EnumNatureza.ENTRADA
-                },
-                {
-                    descricao: EnumTiposTransacao.RECEBIMENTOEMPRESTIMO,
-                    natureza: EnumNatureza.ENTRADA
-                },
-                {
-                    descricao: EnumTiposTransacao.VENDAS,
-                    natureza: EnumNatureza.ENTRADA
-                },
-                {
-                    descricao: EnumTiposTransacao.RECEBIMENTOTED,
-                    natureza: EnumNatureza.ENTRADA
-                },
-                {
-                    descricao: EnumTiposTransacao.RECIMENTODOC,
-                    natureza: EnumNatureza.ENTRADA
-                },
-                {
-                    descricao: EnumTiposTransacao.ALUGUEL,
-                    natureza: EnumNatureza.SAIDA
-                }
-            ]);
+
+            const countTiposTransacao = await TiposTransacoes.findAndCountAll();
+
+            if (countTiposTransacao.count === 0) {
+                await TiposTransacoes.bulkCreate([
+                    {
+                        descricao: "Débito",
+                        natureza: EnumNatureza.ENTRADA
+                    },
+                    {
+                        descricao: "Boleto",
+                        natureza: EnumNatureza.SAIDA
+                    },
+                    {
+                        descricao: "Financiamento",
+                        natureza: EnumNatureza.SAIDA
+                    },
+                    {
+                        descricao: "Crédito",
+                        natureza: EnumNatureza.ENTRADA
+                    },
+                    {
+                        descricao: "Recebimento Empréstimo",
+                        natureza: EnumNatureza.ENTRADA
+                    },
+                    {
+                        descricao: "Vendas",
+                        natureza: EnumNatureza.ENTRADA
+                    },
+                    {
+                        descricao: "Recebimento TED",
+                        natureza: EnumNatureza.ENTRADA
+                    },
+                    {
+                        descricao: "Recebimento DOC",
+                        natureza: EnumNatureza.ENTRADA
+                    },
+                    {
+                        descricao: "Aluguel",
+                        natureza: EnumNatureza.SAIDA
+                    }
+                ]);
+            }
 
             await Transacoes.sync({ force, alter });
         } catch (error) {
