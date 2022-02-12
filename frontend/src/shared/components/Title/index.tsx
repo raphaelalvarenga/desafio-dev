@@ -5,6 +5,6 @@ interface ITitle {
     title: string;
 }
 
-const Title: FC<ITitle> = ({ title }) => <h3>{title}</h3>;
+const Title: FC<ITitle> = ({ title }) => <h3 data-testid="title">{title}</h3>;
 
 export default Title;
