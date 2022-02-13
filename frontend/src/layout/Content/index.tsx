@@ -1,5 +1,4 @@
 import React, {
-    ChangeEvent,
     FC,
     Fragment,
     useEffect,
@@ -20,14 +19,11 @@ import {
     NoDataFoundContainerLabel,
     NoDataImagem,
     UploadedFileContainer,
-    UploadedFileLabel,
-    UploadedFileClose
+    UploadedFileLabel
 } from "./styles";
 import { AiOutlineCloudUpload } from "react-icons/ai";
-import { IoIosCloseCircle } from "react-icons/io";
 import { FiSend } from "react-icons/fi";
 import NoDataImg from "../../shared/images/no_data_found.png";
-import { ITransacao } from "../../shared/interfaces/transacao.interface";
 import Table from "../../shared/components/Table";
 import Title from "../../shared/components/Title";
 import Balance from "../../shared/components/Balance";
