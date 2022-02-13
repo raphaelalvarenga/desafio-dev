@@ -3,6 +3,7 @@ import Button from "../../../shared/components/Button";
 
 export const Container = styled.nav`
     border-bottom: ${({ theme }) => `2px solid ${theme.primary}`};
+    padding: 0 12px;
 `;
 
 export const ContainerArea = styled.div`
