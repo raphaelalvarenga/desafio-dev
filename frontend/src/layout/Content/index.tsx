@@ -30,6 +30,7 @@ import Balance from "../../shared/components/Balance";
 import axios from "axios";
 import { ITransacaoView } from "../../shared/interfaces/transacao-view.interface";
 import api from "../../shared/api";
+import Accordion from "../../shared/components/Accordion";
 
 interface IContent {}
 
@@ -151,6 +152,8 @@ const Content: FC<IContent> = () => {
             )}
             {transacoesView.map(({ nomeLoja, saldoConta, registros }) => (
                 <Fragment key={nomeLoja}>
+                    <Accordion />
+
                     <Title title={nomeLoja} />
                     <Table transacoes={registros} />
                     <Balance>

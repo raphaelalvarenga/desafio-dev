@@ -7,7 +7,8 @@ import {
     Body,
     ItemContainer,
     ItemTitle,
-    ItemValue
+    ItemValue,
+    IconContainer
 } from "./style";
 
 interface IAccordion {}
@@ -17,6 +18,7 @@ const Accordion: FC<IAccordion> = () => (
         <Title>
             <TitleDescription>BAR DO JOÃO</TitleDescription>
             <TitleBalance>R$ 6601,18</TitleBalance>
+            <IconContainer>Ícone</IconContainer>
         </Title>
 
         <Body>
