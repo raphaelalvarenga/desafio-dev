@@ -35,6 +35,11 @@ export const UploadedFileClose = styled.div``;
 
 export const ButtonContainer = styled.div`
     margin-right: 24px;
+    text-align: center;
+
+    @media (min-width: 900px) {
+        text-align: left;
+    }
 `;
 
 export const ButtonContent = styled.div`
