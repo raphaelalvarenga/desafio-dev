@@ -1,10 +1,12 @@
 import { FC } from "react";
-import {} from "./styles";
+import { CustomTitle } from "./styles";
 
 interface ITitle {
     title: string;
 }
 
-const Title: FC<ITitle> = ({ title }) => <h3 data-testid="title">{title}</h3>;
+const Title: FC<ITitle> = ({ title }) => (
+    <CustomTitle data-testid="title">{title}</CustomTitle>
+);
 
 export default Title;
