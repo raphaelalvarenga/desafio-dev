@@ -150,22 +150,26 @@ const Content: FC<IContent> = () => {
                     </NoDataFoundContainerLabel>
                 </NoDataFoundContainer>
             )}
-            {transacoesView.map(({ nomeLoja, saldoConta, registros }) => (
-                <Fragment key={nomeLoja}>
-                    <Accordion />
+            {transacoesView.map(transacaoView => (
+                <Fragment key={transacaoView.nomeLoja}>
+                    <Accordion transacaoView={transacaoView} />
 
-                    <Title title={nomeLoja} />
-                    <Table transacoes={registros} />
+                    <Title title={transacaoView.nomeLoja} />
+                    <Table transacoes={transacaoView.registros} />
                     <Balance>
                         Saldo em Conta:{" "}
                         <span
                             style={{
                                 color:
-                                    parseInt(saldoConta) < 0 ? "red" : "black"
+                                    parseInt(transacaoView.saldoConta) < 0
+                                        ? "red"
+                                        : "black"
                             }}
                         >
                             R${" "}
-                            {parseInt(saldoConta).toFixed(2).replace(".", ",")}
+                            {parseInt(transacaoView.saldoConta)
+                                .toFixed(2)
+                                .replace(".", ",")}
                         </span>
                     </Balance>
                 </Fragment>
