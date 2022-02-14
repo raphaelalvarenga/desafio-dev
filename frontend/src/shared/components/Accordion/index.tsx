@@ -10,6 +10,7 @@ import {
     ItemValue,
     IconContainer
 } from "./style";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 interface IAccordion {}
 
@@ -18,7 +19,9 @@ const Accordion: FC<IAccordion> = () => (
         <Title>
             <TitleDescription>BAR DO JOÃO</TitleDescription>
             <TitleBalance>R$ 6601,18</TitleBalance>
-            <IconContainer>Ícone</IconContainer>
+            <IconContainer>
+                <IoIosArrowUp />
+            </IconContainer>
         </Title>
 
         <Body>
