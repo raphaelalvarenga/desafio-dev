@@ -60,6 +60,8 @@ const Content: FC<IContent> = () => {
         event.preventDefault();
         const formData = new FormData();
 
+        console.log(selectedFile);
+
         formData.append("file", selectedFile);
 
         const config = {
@@ -78,6 +80,14 @@ const Content: FC<IContent> = () => {
         inputFile.current.click();
     };
 
+    const fileHasBeenSelected = (event: any) => {
+        const fileName = event.target.files[0].name;
+
+        fileName === "CNAB.txt"
+            ? setSelectedFile(event.target.files[0])
+            : alert("Insira o arquivo combinado para este desafio!");
+    };
+
     return (
         <Container>
             <form onSubmit={postTransacoes} encType="multipart/form-data">
@@ -87,10 +97,7 @@ const Content: FC<IContent> = () => {
                             type="file"
                             name="file"
                             ref={inputFile}
-                            onChange={(e: any) => {
-                                console.log(e.target.files[0]);
-                                setSelectedFile(e.target.files[0]);
-                            }}
+                            onChange={fileHasBeenSelected}
                             hidden
                         />
                         <Button

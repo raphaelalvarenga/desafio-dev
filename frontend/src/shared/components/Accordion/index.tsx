@@ -35,7 +35,7 @@ const Accordion: FC<IAccordion> = ({ transacaoView }) => {
 
             <Body isOpen={isOpen}>
                 {transacaoView.registros.map(registro => (
-                    <SubItem registro={registro} />
+                    <SubItem key={registro.id} registro={registro} />
                 ))}
             </Body>
         </Container>
