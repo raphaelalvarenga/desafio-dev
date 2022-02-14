@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import {
     Container,
     Title,
@@ -23,55 +23,61 @@ interface IAccordion {
     transacaoView: ITransacaoView;
 }
 
-const Accordion: FC<IAccordion> = ({ transacaoView }) => (
-    <Container>
-        <Title>
-            <TitleDescription>{transacaoView.nomeLoja}</TitleDescription>
-            <TitleBalance>{transacaoView.saldoConta}</TitleBalance>
-            <IconContainer>
-                <IoIosArrowUp />
-            </IconContainer>
-        </Title>
+const Accordion: FC<IAccordion> = ({ transacaoView }) => {
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
-        <Body>
-            <ItemContainer>
-                <ItemTitleContainer>
-                    <ItemTitleContent>
-                        <ItemTitle>Tipo</ItemTitle>
-                        <ItemValue>Recebimento Empréstimo</ItemValue>
-                    </ItemTitleContent>
-                    <ItemTitleIcon>
-                        <IoIosArrowUp />
-                    </ItemTitleIcon>
-                </ItemTitleContainer>
+    return (
+        <Container onClick={() => setIsOpen(!isOpen)}>
+            <Title>
+                <TitleDescription>{transacaoView.nomeLoja}</TitleDescription>
+                <TitleBalance>{transacaoView.saldoConta}</TitleBalance>
+                <IconContainer>
+                    {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                </IconContainer>
+            </Title>
 
-                <SubItemContainer>
-                    <SubItemTitle>Data</SubItemTitle>
-                    <SubItemValue>01/03/2019</SubItemValue>
-                </SubItemContainer>
-                <SubItemContainer>
-                    <SubItemTitle>Valor</SubItemTitle>
-                    <SubItemValue>R$ 14.200</SubItemValue>
-                </SubItemContainer>
-                <SubItemContainer>
-                    <SubItemTitle>CPF</SubItemTitle>
-                    <SubItemValue>096.206.760-17</SubItemValue>
-                </SubItemContainer>
-                <SubItemContainer>
-                    <SubItemTitle>Cartão</SubItemTitle>
-                    <SubItemValue>4753****3153</SubItemValue>
-                </SubItemContainer>
-                <SubItemContainer>
-                    <SubItemTitle>Hora</SubItemTitle>
-                    <SubItemValue>15:34:53</SubItemValue>
-                </SubItemContainer>
-                <SubItemContainer>
-                    <SubItemTitle>Dono da Loja</SubItemTitle>
-                    <SubItemValue>JOÃO MACEDO</SubItemValue>
-                </SubItemContainer>
-            </ItemContainer>
-        </Body>
-    </Container>
-);
+            <Body isOpen={isOpen}>
+                {transacaoView.registros.map(registro => (
+                    <ItemContainer key={registro.id}>
+                        <ItemTitleContainer>
+                            <ItemTitleContent>
+                                <ItemTitle>Tipo</ItemTitle>
+                                <ItemValue>{registro.descricao}</ItemValue>
+                            </ItemTitleContent>
+                            <ItemTitleIcon>
+                                <IoIosArrowUp />
+                            </ItemTitleIcon>
+                        </ItemTitleContainer>
+
+                        <SubItemContainer>
+                            <SubItemTitle>Data</SubItemTitle>
+                            <SubItemValue>{registro.data}</SubItemValue>
+                        </SubItemContainer>
+                        <SubItemContainer>
+                            <SubItemTitle>Valor</SubItemTitle>
+                            <SubItemValue>R$ {registro.valor}</SubItemValue>
+                        </SubItemContainer>
+                        <SubItemContainer>
+                            <SubItemTitle>CPF</SubItemTitle>
+                            <SubItemValue>{registro.cpf}</SubItemValue>
+                        </SubItemContainer>
+                        <SubItemContainer>
+                            <SubItemTitle>Cartão</SubItemTitle>
+                            <SubItemValue>{registro.cartao}</SubItemValue>
+                        </SubItemContainer>
+                        <SubItemContainer>
+                            <SubItemTitle>Hora</SubItemTitle>
+                            <SubItemValue>{registro.hora}</SubItemValue>
+                        </SubItemContainer>
+                        <SubItemContainer>
+                            <SubItemTitle>Dono da Loja</SubItemTitle>
+                            <SubItemValue>{registro.donoLoja}</SubItemValue>
+                        </SubItemContainer>
+                    </ItemContainer>
+                ))}
+            </Body>
+        </Container>
+    );
+};
 
 export default Accordion;

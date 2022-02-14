@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface IBody {
+    isOpen: boolean;
+}
+
 export const Container = styled.div`
     padding: 0 12px;
     margin: 0 0 20px 0;
@@ -27,7 +31,11 @@ export const IconContainer = styled.div`
     padding: 0 12px;
 `;
 
-export const Body = styled.div``;
+export const Body = styled.div<IBody>`
+    height: ${({ isOpen }) => (isOpen ? "auto" : 0)};
+    overflow: ${({ isOpen }) => (isOpen ? "visible" : "hidden")};
+    transition: 0.3s;
+`;
 
 export const ItemContainer = styled.div`
     border-bottom: ${({ theme }) => `2px solid ${theme.secondary}`};
@@ -45,7 +53,9 @@ export const ItemTitleContainer = styled.div`
 
 export const ItemTitleContent = styled.div``;
 
-export const ItemTitleIcon = styled.div``;
+export const ItemTitleIcon = styled.div`
+    padding: 0 12px;
+`;
 
 export const ItemTitle = styled.div`
     font-weight: bold;
