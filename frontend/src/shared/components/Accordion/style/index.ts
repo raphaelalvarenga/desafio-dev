@@ -4,9 +4,17 @@ interface IBody {
     isOpen: boolean;
 }
 
+interface ITitleBalance {
+    saldoConta: string;
+}
+
 export const Container = styled.div`
     padding: 0 12px;
     margin: 0 0 20px 0;
+
+    @media (min-width: 900px) {
+        display: none;
+    }
 `;
 
 export const Title = styled.div`
@@ -25,7 +33,10 @@ export const TitleDescription = styled.div`
     flex: 1;
 `;
 
-export const TitleBalance = styled.div``;
+export const TitleBalance = styled.div<ITitleBalance>`
+    color: ${({ theme, saldoConta }) =>
+        parseInt(saldoConta) < 0 ? "red" : theme.white};
+`;
 
 export const IconContainer = styled.div`
     padding: 0 12px;

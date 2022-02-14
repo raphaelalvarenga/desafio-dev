@@ -40,7 +40,12 @@ const SubItem: FC<ISubItem> = ({ registro }) => {
                 </SubItemContainer>
                 <SubItemContainer>
                     <SubItemTitle>Valor</SubItemTitle>
-                    <SubItemValue>R$ {registro.valor}</SubItemValue>
+                    <SubItemValue>
+                        R${" "}
+                        {parseInt(registro.valor as string)
+                            .toFixed(2)
+                            .replace(".", ",")}
+                    </SubItemValue>
                 </SubItemContainer>
                 <SubItemContainer>
                     <SubItemTitle>CPF</SubItemTitle>

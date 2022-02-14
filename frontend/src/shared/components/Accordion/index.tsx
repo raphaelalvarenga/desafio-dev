@@ -22,7 +22,12 @@ const Accordion: FC<IAccordion> = ({ transacaoView }) => {
         <Container>
             <Title onClick={() => setIsOpen(!isOpen)}>
                 <TitleDescription>{transacaoView.nomeLoja}</TitleDescription>
-                <TitleBalance>{transacaoView.saldoConta}</TitleBalance>
+                <TitleBalance saldoConta={transacaoView.saldoConta}>
+                    R${" "}
+                    {parseInt(transacaoView.saldoConta)
+                        .toFixed(2)
+                        .replace(".", ",")}
+                </TitleBalance>
                 <IconContainer>
                     {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
                 </IconContainer>
